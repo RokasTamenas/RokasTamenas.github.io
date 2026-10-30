@@ -1697,6 +1697,87 @@ section,
   }
 }
 
+.services .services-table {
+  --bs-table-bg: var(--surface-color);
+  --bs-table-color: var(--default-color);
+  --bs-table-border-color: color-mix(in srgb, var(--default-color), transparent 86%);
+  margin-bottom: 1rem;
+}
+
+.services .services-table > :not(caption) > * > * {
+  padding: 1rem 1.25rem;
+}
+
+.services .services-table thead th {
+  color: var(--heading-color);
+  font-family: var(--heading-font);
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.services .services-table tbody th {
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+.services .services-table tbody tr:hover > * {
+  background-color: color-mix(in srgb, var(--accent-color), var(--surface-color) 92%);
+}
+
+.services .services-table th:last-child,
+.services .services-table td:last-child {
+  white-space: nowrap;
+}
+
+.services .service-pricing-note {
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+}
+
+.services .service-list-panel {
+  background-color: var(--surface-color);
+  border-left: 4px solid var(--accent-color);
+  padding: 1.5rem;
+}
+
+.services .service-list-panel h3 {
+  color: var(--heading-color);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.services .service-list-panel ul,
+.services .service-list-panel ol {
+  margin-bottom: 0;
+  padding-left: 1.5rem;
+}
+
+.services .service-list-panel li {
+  color: color-mix(in srgb, var(--default-color), transparent 12%);
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.services .service-list-panel li::marker {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.services .service-list-panel li:last-child {
+  margin-bottom: 0;
+}
+
+.services .service-list-panel ol ul {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 767.98px) {
+  .services .services-table > :not(caption) > * > * {
+    padding: 0.75rem;
+  }
+}
+
 /*--------------------------------------------------------------
 # Service Details Section
 --------------------------------------------------------------*/
