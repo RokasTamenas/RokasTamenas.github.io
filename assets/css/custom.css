@@ -1,0 +1,798 @@
+/**
+ * custom.css – load AFTER main.css
+ *
+ * TASK 2  typography (site font, h1-h6, footer)
+ * TASK 3  buttons (:hover, :active) + links
+ * TASK 4  spacing between sections + content-block borders/radius/shadow
+ * TASK 5  two restyled components: navigation bar + progress bars
+ * LISTS   Services page lists (counters, ::before markers, nested list)
+ * TABLE   Services page table (header row, zebra + hover, padding, centring)
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400..800&family=Playfair+Display:ital,wght@0,400..800;1,400..800&display=swap");
+
+:root {
+  --default-font: "Nunito Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --nav-font: var(--default-font);
+  --heading-font: "Playfair Display", Georgia, serif;
+  --heading-color: #f4e9d3;
+  --sub-color: #9fd3ee;
+  --hl: #e3b36b;
+  --hl-hover: #f2cd8f;
+  --hl-active: #c99a4e;
+  --dark: #101a20;
+  --hl-line: color-mix(in srgb, var(--hl), transparent 65%);
+  --nav-hover-color: var(--hl);
+  --nav-dropdown-hover-color: var(--hl);
+  --block-radius: 22px 4px 22px 4px;
+  --block-border: 1px solid var(--hl-line);
+  --sh-sm: 3px 3px 0 color-mix(in srgb, var(--accent-color), transparent 55%);
+  --block-shadow: 8px 8px 0 color-mix(in srgb, var(--accent-color), transparent 78%);
+  --block-shadow-hover: 11px 11px 0 color-mix(in srgb, var(--accent-color), transparent 62%);
+}
+
+/* ===== TASK 2: typography – site font, headings h1-h6, footer ===== */
+body {
+  font-family: var(--default-font);
+  line-height: 1.7;
+  letter-spacing: 0.1px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font);
+  line-height: 1.2;
+  font-variant-numeric: lining-nums;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+h3 {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--sub-color);
+}
+
+h4 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--sub-color);
+}
+
+h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--hl);
+}
+
+h6 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hl);
+}
+
+/* headings inside sections (main.css section rules would otherwise win) */
+.section-title h2 {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.section-title h2::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin: 1rem auto 0;
+  background: linear-gradient(90deg, var(--hl), transparent);
+}
+
+.hero .hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 3.9rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.hero .hero-content h1 .highlight {
+  color: var(--hl);
+  font-style: italic;
+}
+
+.hero .hero-content h1 .highlight::after {
+  background: var(--hl);
+}
+
+.hero .hero-content h2 {
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--sub-color);
+}
+
+.about .intro-content .headline {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.skills .skill-box h3,
+.resume .resume-item article h4,
+.resume .skill-item h4 {
+  font-weight: 700;
+}
+
+.resume .resume-item .resume-title {
+  font-size: 1.9rem;
+  letter-spacing: -0.01em;
+}
+
+.resume .resume-item .resume-title::after {
+  background: var(--hl);
+}
+
+/* footer */
+.footer {
+  padding: 64px 0 36px;
+  font-size: 15px;
+  line-height: 1.8;
+  letter-spacing: 0.2px;
+  text-align: center;
+  color: #cfdde5;
+  background: linear-gradient(160deg, #0a1319, #0d2733);
+  border-top: 4px solid var(--hl);
+}
+
+.footer .copyright p {
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+
+.footer .sitename {
+  font-family: var(--heading-font);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--hl);
+}
+
+.footer .credits {
+  margin-top: 32px;
+  padding-top: 20px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  border-top: 1px dashed color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.footer .social-links {
+  margin-top: 28px;
+}
+
+.footer .social-links a {
+  width: 44px;
+  height: 44px;
+  margin: 0 7px;
+  font-size: 18px;
+}
+
+/* ===== TASK 3a: buttons (:hover, :active) – square amber buttons with a "pressable" offset shadow ===== */
+:is(
+  .hero .hero-actions .btn.btn-primary,
+  .hero .hero-actions .btn.btn-outline,
+  .portfolio .btn-primary,
+  .contact .contact-form .btn,
+  .about .intro-content .cta-group .btn-ghost
+),
+:is(
+  .hero .hero-actions .btn.btn-primary,
+  .hero .hero-actions .btn.btn-outline,
+  .portfolio .btn-primary,
+  .contact .contact-form .btn,
+  .about .intro-content .cta-group .btn-ghost
+):hover,
+:is(
+  .hero .hero-actions .btn.btn-primary,
+  .hero .hero-actions .btn.btn-outline,
+  .portfolio .btn-primary,
+  .contact .contact-form .btn,
+  .about .intro-content .cta-group .btn-ghost
+):active,
+.about .intro-content .cta-group .btn-ghost:focus {
+  font: 800 0.85rem/1.5 var(--nav-font);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 13px 30px;
+  border-radius: 2px;
+  outline: none;
+  color: var(--fg);
+  background: var(--bg);
+  border: 2px solid var(--bd);
+  box-shadow: var(--sh);
+  transform: var(--tf);
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s,
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.btn-primary,
+.contact .btn {
+  --bg: var(--hl);
+  --fg: var(--dark);
+  --bd: var(--hl);
+  --sh: 5px 5px 0 var(--accent-color);
+  --tf: none;
+}
+
+.btn-primary:hover,
+.contact .btn:hover {
+  --bg: var(--hl-hover);
+  --bd: var(--hl-hover);
+  --tf: translate(-2px, -2px);
+  --sh: 7px 7px 0 var(--accent-color);
+}
+
+.btn-primary:active,
+.contact .btn:active {
+  --bg: var(--hl-active);
+  --bd: var(--hl-active);
+  --tf: translate(4px, 4px);
+  --sh: 1px 1px 0 var(--accent-color);
+}
+
+.btn-outline,
+.btn-ghost {
+  --bg: transparent;
+  --fg: var(--hl);
+  --bd: var(--hl);
+  --sh: 5px 5px 0 color-mix(in srgb, var(--hl), transparent 72%);
+  --tf: none;
+}
+
+.btn-outline:hover,
+.btn-ghost:hover,
+.btn-ghost:focus {
+  --bg: var(--hl);
+  --fg: var(--dark);
+  --tf: translate(-2px, -2px);
+  --sh: 7px 7px 0 var(--accent-color);
+}
+
+.btn-outline:active,
+.btn-ghost:active {
+  --bg: var(--hl-active);
+  --bd: var(--hl-active);
+  --fg: var(--dark);
+  --tf: translate(4px, 4px);
+  --sh: 1px 1px 0 var(--accent-color);
+}
+
+:is(
+  .hero .hero-actions .btn.btn-primary,
+  .hero .hero-actions .btn.btn-outline,
+  .portfolio .btn-primary,
+  .contact .contact-form .btn,
+  .about .intro-content .cta-group .btn-ghost
+):focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+/* scroll-to-top button (visibility is still controlled by main.css/JS) */
+.scroll-top {
+  border-radius: 12px;
+  background-color: var(--hl);
+  box-shadow: var(--sh-sm);
+}
+
+.scroll-top i {
+  color: var(--dark);
+}
+
+.scroll-top:hover {
+  background-color: var(--hl-hover);
+  transform: translateY(-3px);
+  box-shadow: 5px 5px 0 var(--accent-color);
+}
+
+.scroll-top:active {
+  background-color: var(--hl-active);
+  transform: translateY(1px);
+  box-shadow: 1px 1px 0 var(--accent-color);
+}
+
+/* portfolio filter buttons + image icon buttons */
+.portfolio .portfolio-filters li {
+  padding: 9px 22px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  color: var(--hl);
+  background: transparent;
+  border: 1px solid var(--hl-line);
+}
+
+.portfolio .portfolio-filters li:hover {
+  color: var(--hl-hover);
+  background: color-mix(in srgb, var(--hl), transparent 85%);
+  border-color: var(--hl);
+  transform: translateY(-2px);
+}
+
+.portfolio .portfolio-filters li:active {
+  transform: translateY(1px);
+}
+
+.portfolio .portfolio-filters li.filter-active {
+  color: var(--dark);
+  background: var(--hl);
+  border-color: var(--hl);
+}
+
+.portfolio .portfolio-card .portfolio-img .portfolio-overlay a {
+  border-radius: 10px;
+  color: var(--dark);
+  background: var(--hl);
+  box-shadow: var(--sh-sm);
+}
+
+.portfolio .portfolio-card .portfolio-img .portfolio-overlay a:hover {
+  background: var(--hl-hover);
+  transform: translateY(-5px);
+  box-shadow: 4px 8px 0 var(--accent-color);
+}
+
+.portfolio .portfolio-card .portfolio-img .portfolio-overlay a:active {
+  background: var(--hl-active);
+  transform: none;
+  box-shadow: 1px 1px 0 var(--accent-color);
+}
+
+/* ===== TASK 3b: links – amber, white on hover, dark amber on :active ===== */
+a {
+  color: var(--hl);
+}
+
+a:hover {
+  color: #fff;
+}
+
+a:active {
+  color: var(--hl-active);
+}
+
+a:focus-visible {
+  outline: 2px dashed var(--hl);
+  outline-offset: 3px;
+}
+
+.navmenu a,
+.navmenu a:focus {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.navmenu a:active {
+  color: #fff;
+}
+
+@media (min-width: 1200px) {
+  .navmenu a,
+  .navmenu a:focus {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .navmenu a:hover:before,
+  .navmenu li:hover > a:before,
+  .navmenu .active:before {
+    width: 100%;
+  }
+}
+
+.header .header-social-links a:hover {
+  color: var(--hl);
+  transform: translateY(-2px);
+}
+
+.header .header-social-links a:active {
+  color: var(--hl-active);
+  transform: none;
+}
+
+.hero .social-links a,
+.footer .social-links a {
+  border-radius: 12px;
+  color: var(--hl);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--hl-line);
+}
+
+.hero .social-links a:hover,
+.footer .social-links a:hover {
+  color: var(--dark);
+  background: var(--hl);
+  border-color: var(--hl);
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 0 var(--accent-color);
+}
+
+.hero .social-links a:active,
+.footer .social-links a:active {
+  background: var(--hl-active);
+  transform: none;
+  box-shadow: 1px 1px 0 var(--accent-color);
+}
+
+.about .intro-content .cta-group .link-underline {
+  color: var(--hl);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about .intro-content .cta-group .link-underline::after {
+  height: 2px;
+  background: var(--hl);
+  transform: scaleX(0.3);
+}
+
+.about .intro-content .cta-group .link-underline:is(:hover, :focus) {
+  color: #fff;
+}
+
+.about .intro-content .cta-group .link-underline:is(:hover, :focus)::after {
+  background: #fff;
+  transform: scaleX(1);
+}
+
+.about .intro-content .cta-group .link-underline:active {
+  color: var(--hl-active);
+}
+
+/* ===== TASK 4a: margins / paddings between sections ===== */
+.main > section.section:not(.hero) {
+  padding: clamp(64px, 8vw, 96px) 0;
+}
+
+.main > section.section:not(.hero) + section.section:not(.hero) {
+  margin-top: clamp(16px, 3vw, 32px);
+  border-top: 1px dashed var(--hl-line);
+}
+
+.section-title {
+  padding-bottom: clamp(36px, 5vw, 48px);
+}
+
+.about .intro-content p {
+  margin-bottom: 28px;
+}
+
+.about .intro-content .cta-group {
+  margin-top: 40px;
+  gap: 32px;
+}
+
+.about .intro-content {
+  padding: 2.25rem 2.5rem;
+}
+
+.skills .skill-box,
+.services .service-list-panel {
+  padding: 2rem;
+}
+
+.resume .resume-item {
+  padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.resume .resume-item article {
+  margin-bottom: 3rem;
+}
+
+.resume .skill-item {
+  margin-bottom: 2.5rem;
+}
+
+.portfolio .portfolio-filters {
+  gap: 14px;
+  margin-bottom: 56px;
+}
+
+.portfolio .portfolio-card {
+  margin-bottom: 0.5rem;
+}
+
+.portfolio .portfolio-card .portfolio-info {
+  padding: 26px 24px;
+}
+
+.skills .skills-animation,
+.services .service-lists,
+.portfolio .isotope-container {
+  --bs-gutter-x: 2rem;
+  --bs-gutter-y: 2rem;
+}
+
+.services .services-table {
+  margin-bottom: 0;
+}
+
+.services .service-pricing-note {
+  padding: 1.25rem 1.5rem;
+}
+
+.contact :is(.info-box, .contact-form) h3 {
+  margin-bottom: 1.75rem;
+}
+
+.contact .info-item {
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+/* ===== TASK 4b: borders, border-radius, box-shadow of the content blocks ===== */
+.about .intro-content,
+.skills .skill-box,
+.resume .resume-item,
+.portfolio .portfolio-card,
+.services .table-responsive,
+.services .service-list-panel,
+.contact :is(.info-box, .contact-form),
+.main video.w-100,
+.main .ratio {
+  background: var(--surface-color);
+  border: var(--block-border);
+  border-radius: var(--block-radius);
+  box-shadow: var(--block-shadow);
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+
+.skills .skill-box,
+.portfolio .portfolio-card .portfolio-info {
+  border-top: 4px solid var(--hl);
+}
+
+.skills .skill-box:hover,
+.portfolio .portfolio-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--block-shadow-hover);
+}
+
+.main video.w-100,
+.main .ratio {
+  overflow: hidden;
+}
+
+.about .profile-figure .profile-photo,
+.hero .hero-image .image-wrapper img {
+  border: 2px solid var(--hl-line);
+  border-radius: 32px 4px 32px 4px;
+  box-shadow: 10px 10px 0 color-mix(in srgb, var(--accent-color), transparent 75%);
+}
+
+.hero .hero-image .floating-elements .floating-card {
+  border: var(--block-border);
+  border-radius: 4px 16px 4px 16px;
+  box-shadow: var(--sh-sm);
+}
+
+.portfolio .portfolio-card .portfolio-info .portfolio-tags span {
+  border-radius: 4px;
+  color: var(--hl);
+  background: color-mix(in srgb, var(--hl), transparent 88%);
+  border: 1px solid var(--hl-line);
+}
+
+.contact .info-item .icon-box {
+  border-radius: 12px 4px 12px 4px;
+  border: 1px solid var(--hl-line);
+}
+
+.contact .contact-form :is(.form-control, .form-select) {
+  border-radius: 4px;
+  border-color: var(--hl-line);
+}
+
+.contact .contact-form :is(.form-control, .form-select):focus {
+  border-color: var(--hl);
+  box-shadow: 4px 4px 0 color-mix(in srgb, var(--accent-color), transparent 70%);
+}
+
+/* ===== TASK 5: two restyled components – (1) navigation bar, (2) progress bars ===== */
+.header {
+  --background-color: rgba(8, 15, 20, 0.55);
+  padding: 20px 0;
+  background-image: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--hl), transparent 90%),
+    color-mix(in srgb, var(--accent-color), transparent 90%)
+  );
+  border-bottom: 2px solid var(--hl-line);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+.scrolled .header {
+  --background-color: rgba(8, 15, 20, 0.96);
+  padding: 10px 0;
+  border-bottom: 3px solid var(--hl);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
+
+:is(.skills .skill-box, .resume .skill-item) .progress {
+  height: 14px;
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--hl-line);
+  border-radius: 3px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+:is(.skills .skill-box, .resume .skill-item) .progress .progress-bar {
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--hl-line);
+  animation: stripes 1s linear infinite;
+  background:
+    linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.22) 25%,
+        transparent 25% 50%,
+        rgba(255, 255, 255, 0.22) 50% 75%,
+        transparent 75%
+      )
+      18px 0 / 18px 18px,
+    linear-gradient(90deg, var(--accent-color), var(--hl));
+}
+
+.resume .skill-item .progress .progress-bar::after {
+  color: var(--hl);
+  font-family: var(--nav-font);
+}
+
+@keyframes stripes {
+  to {
+    background-position:
+      0 0,
+      0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.skills .skill-box, .resume .skill-item) .progress .progress-bar {
+    animation: none;
+  }
+}
+
+/* ===== LISTS (Services page): 1a ::before markers + CSS counter, 1b nested list ===== */
+.services .service-list-panel > :is(ul, ol) {
+  list-style: none;
+  padding-left: 0;
+}
+
+.services .service-list-panel > ol {
+  counter-reset: step;
+}
+
+.services .service-list-panel > :is(ul, ol) > li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.services .service-list-panel > ol > li {
+  padding-left: 3.5rem;
+  min-height: 2.5rem;
+  counter-increment: step;
+}
+
+.services .service-list-panel > ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.6em;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--hl);
+  transform: rotate(45deg);
+  box-shadow: var(--sh-sm);
+}
+
+.services .service-list-panel > ol > li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: -0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  font: 700 1rem var(--heading-font);
+  color: var(--dark);
+  background: var(--hl);
+  border-radius: 12px 4px 12px 4px;
+  box-shadow: var(--sh-sm);
+}
+
+.services .service-list-panel ol ul {
+  list-style: none;
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem 0.5rem 1.25rem;
+  background: color-mix(in srgb, var(--accent-color), transparent 92%);
+  border-left: 2px dashed var(--hl-line);
+  border-radius: 0 14px 14px 0;
+}
+
+.services .service-list-panel ol ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.92rem;
+  font-style: italic;
+  color: color-mix(in srgb, var(--default-color), transparent 28%);
+}
+
+.services .service-list-panel ol ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--accent-color);
+  border-radius: 50%;
+}
+
+/* ===== TABLE (Services page): a header row, b zebra + :hover, c equal padding + centred content ===== */
+.services .services-table > :not(caption) > * > * {
+  padding: clamp(0.75rem, 2vw, 1.25rem) clamp(0.75rem, 3vw, 1.5rem);
+  text-align: center;
+  vertical-align: middle;
+  transition: background-color 0.25s;
+}
+
+.services .services-table thead th {
+  font: 800 0.85rem/1.5 var(--nav-font);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dark);
+  background: linear-gradient(90deg, var(--hl), var(--hl-active));
+  border-bottom: 4px solid var(--accent-color);
+}
+
+.services .services-table tbody tr:nth-child(even) > * {
+  background-color: color-mix(in srgb, var(--accent-color), var(--surface-color) 90%);
+}
+
+.services .services-table tbody tr:hover > * {
+  background-color: color-mix(in srgb, var(--hl), var(--surface-color) 84%);
+}
+
+.services .services-table tbody tr:hover > :first-child {
+  box-shadow: inset 5px 0 0 var(--hl);
+}
